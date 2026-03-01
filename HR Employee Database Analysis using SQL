@@ -1,0 +1,49 @@
+CREATE TABLE Employee(
+    Emp_ID INT PRIMARY KEY,
+    First_Name VARCHAR(50),
+    Last_Name VARCHAR(50),
+    Gender VARCHAR(10),
+    Department VARCHAR(50),
+    Salary INT,
+    Hire_Date DATE,
+    Experience INT
+);
+ INSERT INTO Employee VALUES
+(101,'Rahul','Sharma','Male','IT',60000,'2019-06-15',5),
+(102,'Priya','Verma','Female','HR',45000,'2020-03-10',3),
+(103,'Arjun','Reddy','Male','Finance',70000,'2018-07-22',6),
+(104,'Sneha','Iyer','Female','IT',65000,'2021-01-12',2),
+(105,'Kiran','Patel','Male','Sales',50000,'2017-09-05',7),
+(106,'Divya','Nair','Female','Finance',72000,'2016-11-18',8);
+
+
+SELECT * FROM Employee;
+
+
+SELECT First_Name, Department, Salary
+FROM Employee
+WHERE Salary > 60000;
+
+SELECT Department, COUNT(*) AS Total_Employees
+FROM Employee
+GROUP BY Department;
+
+
+SELECT Department, AVG(Salary) AS Avg_Salary
+FROM Employee
+GROUP BY Department;
+
+SELECT Department, COUNT(*) AS Total
+FROM Employee
+GROUP BY Department
+HAVING COUNT(*) > 1;
+
+
+SELECT *
+FROM Employees
+WHERE Salary = (SELECT MAX(Salary) FROM Employees);
+
+
+SELECT Name,Department, Salary,
+RANK() OVER (ORDER BY Salary DESC) AS Salary_Rank
+FROM Employees;
